@@ -10,7 +10,7 @@ import sbt.{AutoPlugin, IO, _}
 /**
   * Created by u016595 on 11.07.2017.
   */
-class PackagedClasspathJarPlugin extends AutoPlugin {
+object SbtClasspathJarPlugin extends AutoPlugin {
 
   object autoImport {
     val classpathJarName: SettingKey[String] = SettingKey[String]("classpathJarName")
