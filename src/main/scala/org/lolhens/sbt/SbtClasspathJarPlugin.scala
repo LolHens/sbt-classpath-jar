@@ -15,7 +15,7 @@ object SbtClasspathJarPlugin extends AutoPlugin {
   object autoImport {
     val classpathJarName: SettingKey[String] = SettingKey[String]("classpathJarName")
 
-    val additionalClasspathEntries: SettingKey[Seq[String]] = SettingKey[Seq[String]]("additionalClasspathEntries")
+    val additionalClasspathEntries: TaskKey[Seq[String]] = TaskKey[Seq[String]]("additionalClasspathEntries")
   }
 
   override def requires: Plugins = JavaAppPackaging && UniversalPlugin
