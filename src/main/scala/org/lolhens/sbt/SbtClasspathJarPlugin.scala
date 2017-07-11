@@ -27,6 +27,8 @@ object SbtClasspathJarPlugin extends AutoPlugin {
   override lazy val projectSettings = Seq(
     classpathJarName := "classpath.jar",
 
+    additionalClasspathEntries := Seq.empty,
+
     scriptClasspath := {
       val manifest = new java.util.jar.Manifest()
 
