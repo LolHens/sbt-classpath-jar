@@ -5,7 +5,7 @@ name := (name in ThisBuild).value
 inThisBuild(Seq(
   name := "sbt-classpath-jar",
   organization := "de.lolhens",
-  version := "1.2.0",
+  version := "1.2.1",
 
   bintrayReleaseOnPublish := false
 ))

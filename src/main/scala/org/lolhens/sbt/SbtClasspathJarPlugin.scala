@@ -27,14 +27,14 @@ object SbtClasspathJarPlugin extends AutoPlugin {
   override lazy val projectSettings = Seq(
     classpathJarName := "classpath.jar",
 
-    classpathJarEntries := scriptClasspath.value,
+    classpathJarEntries := Seq.empty,
 
     scriptClasspath := {
       val manifest = new java.util.jar.Manifest()
 
       manifest.getMainAttributes.putValue(
         Attributes.Name.CLASS_PATH.toString,
-        classpathJarEntries.value.mkString(" ")
+        (scriptClasspath.value ++ classpathJarEntries.value).mkString(" ")
       )
 
       val classpathJar = (target in Universal).value / "lib" / classpathJarName.value
