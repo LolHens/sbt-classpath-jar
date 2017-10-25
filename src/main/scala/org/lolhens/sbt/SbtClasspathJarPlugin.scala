@@ -13,9 +13,9 @@ import sbt.{AutoPlugin, IO, _}
 object SbtClasspathJarPlugin extends AutoPlugin {
 
   object autoImport {
-    val classpathJarName: SettingKey[String] = SettingKey[String]("classpathJarName")
+    val classpathJarName: SettingKey[String] = settingKey[String]("Name of the generated classpath jar")
 
-    val additionalClasspathEntries: TaskKey[Seq[String]] = TaskKey[Seq[String]]("additionalClasspathEntries")
+    val classpathJarEntries: TaskKey[Seq[String]] = taskKey[Seq[String]]("Classpath Entries")
   }
 
   override def requires: Plugins = JavaAppPackaging && UniversalPlugin
@@ -27,14 +27,14 @@ object SbtClasspathJarPlugin extends AutoPlugin {
   override lazy val projectSettings = Seq(
     classpathJarName := "classpath.jar",
 
-    additionalClasspathEntries := Seq.empty,
+    classpathJarEntries := scriptClasspath.value,
 
     scriptClasspath := {
       val manifest = new java.util.jar.Manifest()
 
       manifest.getMainAttributes.putValue(
         Attributes.Name.CLASS_PATH.toString,
-        (scriptClasspath.value ++ additionalClasspathEntries.value).mkString(" ")
+        classpathJarEntries.value.mkString(" ")
       )
 
       val classpathJar = (target in Universal).value / "lib" / classpathJarName.value
