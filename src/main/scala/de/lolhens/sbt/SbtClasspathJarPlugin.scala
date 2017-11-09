@@ -1,4 +1,4 @@
-package org.lolhens.sbt
+package de.lolhens.sbt
 
 import java.util.jar.Attributes
 
